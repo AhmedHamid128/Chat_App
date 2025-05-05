@@ -42,7 +42,7 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
 
     // Assuming 'type' determines if it's an image
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2),
+      margin:const EdgeInsets.symmetric(vertical: 2),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: widget.Selected
@@ -50,12 +50,12 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
               : Colors.transparent),
       child: Row(
         mainAxisAlignment:
-            //index % 2 == 0
+           
             isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           isMe
               ? IconButton(onPressed: () {}, icon: Icon(Iconsax.message_edit))
-              : SizedBox(),
+              :const SizedBox(),
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -63,8 +63,8 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
                     ? 16
                     : 0), // لو انا اللي باعت يعني انا المستخدم خليها زي الردياس يعني زي الدايره
                 topRight: Radius.circular(isMe ? 0 : 16),
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16),
+                bottomLeft:const Radius.circular(16),
+                bottomRight:const Radius.circular(16),
               ),
             ),
             color:
@@ -90,49 +90,20 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
                                
                               imageUrl: widget.messageitem.msg!,
                               placeholder: (context, url) {
-                                return CircularProgressIndicator();
+                                return const CircularProgressIndicator();
                                 
                               },
-                               width: 200, // Adjust as needed
-                            height: 200, // Adjust as needed
+                               width: 200, 
+                            height: 200, 
                             fit: BoxFit.cover,
                              
                             ),
                         )
-                          
-                          /*
-                          CachedNetworkImage(
-                imageUrl: widget.messageitem.msg.toString(),
-                placeholder: (context, url) => const SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-                errorWidget: (context, url, error) => const SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: Center(
-                    child: Icon(Icons.error, color: Colors.red, size: 50),
-                  ),
-                ),
-                fit: BoxFit.cover,
-                height: 200, // Adjust size as needed
-                width: 200,
-              )
-                 */         
-
-
-        
-      
-    
-  
-
-
-                        : Text(widget.messageitem.msg!),
+                               : Text(widget.messageitem.msg!),
                     Row(
                       children: [
-                        Spacer(),
-                        SizedBox(
+                     const   Spacer(),
+                      const  SizedBox(
                           width: 6,
                         ),
                         Text(
@@ -140,7 +111,7 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
                               .format(DateTime.fromMillisecondsSinceEpoch(
                                   int.parse(widget.messageitem.createdAt!)))
                               .toString(),
-                          style: TextStyle(fontSize: 11),
+                          style:const TextStyle(fontSize: 11),
                         ),
                         isMe
                             ? Icon(
@@ -150,7 +121,7 @@ class _ChatMessageCardState extends State<ChatMessageCard> {
                                     : Colors.blueAccent,
                                 size: 18,
                               )
-                            : SizedBox(
+                            :const SizedBox(
                                 width: 1,
                               ),
                       ],

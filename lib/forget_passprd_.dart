@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class fotgetpassord extends StatefulWidget {
   fotgetpassord({super.key, this.ispass = true});
   bool ispass;
@@ -24,12 +25,7 @@ class _MyWidgetState extends State<fotgetpassord> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /* SvgPicture.network(
-                'assets/Screenshot 2024-08-11 012455.png',
-                width: 100,
-                colorFilter:
-                    ColorFilter.mode(Colors.blueAccent, BlendMode.src),
-              ),*/
+              
 
               Image.network(
                 ' assets/Screenshot 2024-08-11 012455.png ',
@@ -39,7 +35,7 @@ class _MyWidgetState extends State<fotgetpassord> {
                   style: Theme.of(context).textTheme.displaySmall),
               Text('Please enter your email',
                   style: Theme.of(context).textTheme.bodyMedium),
-              SizedBox(
+            const  SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -56,17 +52,17 @@ class _MyWidgetState extends State<fotgetpassord> {
                         showtext ? Icons.visibility : Icons.visibility_off),
                   ),
                   // SizedBox(),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder:const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(255, 136, 196, 245)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon:const Icon(Icons.email),
                   hintText: 'enter email',
                 ),
               ),
-              SizedBox(
+          const    SizedBox(
                 height: 50,
               ),
               Container(
@@ -90,9 +86,9 @@ class _MyWidgetState extends State<fotgetpassord> {
                           SnackBar(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              duration: Duration(seconds: 5),
+                              duration:const Duration(seconds: 5),
                               backgroundColor: Color.fromARGB(255, 22, 97, 51),
-                              content: Text(
+                              content:const Text(
                                 'check your email to reste password',
                                 style: TextStyle(color: Colors.white),
                               )));
@@ -104,7 +100,7 @@ class _MyWidgetState extends State<fotgetpassord> {
                                 backgroundColor:
                                     Color.fromARGB(255, 22, 97, 51),
                                 content: Text(error.toString(),
-                                    style: TextStyle(color: Colors.white)))));
+                                    style:const TextStyle(color: Colors.white)))));
                   },
                   child: Text(
                     " Send to  email",

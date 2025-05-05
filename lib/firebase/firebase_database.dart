@@ -1,37 +1,16 @@
 import 'dart:async';
-import 'dart:typed_data';
-
-import 'package:chat_app_with_firebase/Provider/provider.dart';
 import 'package:chat_app_with_firebase/models/Group-model.dart';
 import 'package:chat_app_with_firebase/models/Room_model.dart';
 import 'package:chat_app_with_firebase/models/message_model.dart';
 import 'package:chat_app_with_firebase/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-/*
- final String myid = FirebaseAuth.instance.currentUser!.uid;
- void createRoom1(String email) async {
-  try {
-    await FirebaseFirestore.instance.collection('rooms').add({
-      'email': email,
-      ' whon created chat id =': myid,
-      'created_at': Timestamp.now(),
-      ' last_Message_Time': Timestamp.now(), 
-    });
-    print("Room created successfully!");
-  } catch (e) {
-    print("Failed to create room: $e");
-  }
-}
-*/
+
 class FireData {
-  //
+  
   ChatUser? me;
   final FirebaseFirestore firestor = FirebaseFirestore.instance;
   final String myid = FirebaseAuth.instance.currentUser!.uid;
@@ -73,18 +52,18 @@ class FireData {
             .doc(memberslist.toString())
             .set(chatRoom.toJson());
         print("Room created successfully!");
-        /// TODO
+       
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: Color.fromARGB(255, 30, 60, 42),
-            content: Center(
+            content:const Center(
               child: Text(
                 "Create chat successfully!",
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            duration: Duration(seconds: 2),
+            duration:const Duration(seconds: 2),
           ),
         );
       } else {
@@ -93,14 +72,14 @@ class FireData {
           SnackBar(
             shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: Color.fromARGB(255, 30, 60, 42),
-            content: Center(
+            content:const Center(
               child: Text(
                 //"ليك كلام قبل كده معاه",
                 "Room already exists.",
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            duration: Duration(seconds: 2),
+            duration:const Duration(seconds: 2),
           ),
         );
       }
@@ -110,13 +89,13 @@ class FireData {
         SnackBar(
           shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Color.fromARGB(255, 30, 60, 42),
-          content: Center(
+          content:const Center(
             child: Text(
               "User not found.",
               style: TextStyle(color: Colors.white),
             ),
           ),
-          duration: Duration(seconds: 2),
+          duration:const Duration(seconds: 2),
         ),
       );
     }
@@ -142,7 +121,7 @@ class FireData {
   Future sendMessage(String uid, String msg, String roomId,
       {String? type}) async {
     // create varabiale unique for each message use  Uuid().v1()
-    String MesId = Uuid().v1();
+    String MesId =const Uuid().v1();
     Message message = Message(
         id: MesId,
         ToId: uid,
@@ -173,18 +152,7 @@ class FireData {
         .doc(MesId)
         .update({'read': DateTime.now().millisecondsSinceEpoch.toString()});
   }
-/*
-  Future DeletMsaage(String roomId, List Msges) async {
-    for (var element in Msges) {
-      await firestor
-          .collection('Room')
-          .doc(roomId)
-          .collection('Messages')
-          .doc(element)
-          .delete();
-    }
-  }
-*/
+
 
   Future<void> DeletMsaage(String roomId, List selectedMessages) async {
     // Delete selected messages
@@ -223,7 +191,7 @@ class FireData {
   }
 
   Future creatGroup(String groupName, List members) async {
-    String groupId = Uuid().v1();
+    String groupId =const Uuid().v1();
     // I m include in members
     members.add(myid);
     ChatUsersGroup chatUsersGroup = ChatUsersGroup(
@@ -275,18 +243,7 @@ class FireData {
         .update({'name': name, 'members': FieldValue.arrayUnion(members)});
   }
 
-/// 
-/// 
-/// 
-/// 
 
-
-  /*
-Future editProfile(String name, String about, {Uint8List? imageBytes})  async{
-  await firestor.collection('users').doc(myid).update({'name':name,'about':about,});
-
-}
-*/
 
 Future editProfile(String name, String about, {String? imageUrl}) async {
   Map<String, dynamic> updateData = {'name': name, 'about': about};

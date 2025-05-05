@@ -1,14 +1,4 @@
 
-  
-
-
-
-
-  
-
-
-import 'dart:html' as html; 
-
 
 
 import 'package:chat_app_with_firebase/Model/chat_Message_Card.dart';
@@ -21,11 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:typed_data';
+
 
 
 class ChatScreene extends StatefulWidget {
-   ChatScreene({super.key, required this.roomId, required this.chatuser});
+   const ChatScreene({super.key, required this.roomId, required this.chatuser});
   final String roomId;
   final ChatUser chatuser;
 
@@ -35,7 +25,7 @@ class ChatScreene extends StatefulWidget {
 
 class _ChatScreeneState extends State<ChatScreene> {
   TextEditingController messagecon = TextEditingController();
-  //final ImagePicker _picker = ImagePicker();
+ 
   List selectedMsg = [];
   List copyMesg = [];
   final ImagePicker _picker = ImagePicker();
@@ -59,7 +49,7 @@ class _ChatScreeneState extends State<ChatScreene> {
       widget.chatuser.id!,
       imageUrl,
       widget.roomId,
-      type: 'image', // Pass a custom type to indicate this is an image message
+      type: 'image', 
     );
   }
  
@@ -75,30 +65,22 @@ class _ChatScreeneState extends State<ChatScreene> {
       appBar: AppBar(
         backgroundColor: Color(0xff0a0b0f).withOpacity(0.5),
         title: Padding(
-          padding: EdgeInsets.only(top: 8),
+          padding:const EdgeInsets.only(top: 8),
           child: Column(
             children: [
               
               Text(widget. chatuser.name!),
-          /*
-              Text(
-                widget.chatuser.online == 'true'
-                    ? "Online"
-                    : "Last seen: ${widget.chatuser.lastActivted}",
-                style: TextStyle(fontSize: 12),
-              ),
-              */
           
               StreamBuilder(
                 stream: FirebaseFirestore.instance.collection('users').doc(widget.chatuser.id).snapshots(),
                 builder: (context, snapshot) {
                   if(snapshot.hasData){
                     return Text(
-                    //widget.chatuser.online == 'true'  
+                    
                     snapshot.data!.data()! ['online'] ==  'true' 
                     ?"online" :
                     widget.chatuser.lastActivted!,
-                    style: TextStyle(fontSize: 12),
+                    style:const TextStyle(fontSize: 12),
                   );
                   
 
@@ -140,7 +122,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                     FireData().DeletMsaage(widget.roomId, selectedMsg);
 
                     setState(() {
-                      //selectedMsg.clear();
+                     
                       copyMesg.clear();
                     });
                   },
@@ -158,7 +140,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                
                 
                 
-                image: NetworkImage(
+                image:const NetworkImage(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR62kVVpw-0aYVNLasj24fBnpXWsrdMXPt4nA&s'),
                     
                 fit: BoxFit.cover,
@@ -251,7 +233,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                                         "اَلَسَلَاَمَ عَلَيَكَمَ وًّرَحَمَةٍ اَلَلَهَ وًّبَرَكَاَتَهَ",
                                         widget.roomId),
                                     child: Card(
-                                      //color: Colors.white.withOpacity(0.8),
+                                    
                                       child: Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: Column(
@@ -281,7 +263,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                                   ),
                                 );
                         } else {
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         }
                       }),
                 ),
@@ -289,7 +271,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                   children: [
                     Expanded(
                       child: Card(
-                        //color: Colors.white.withOpacity(0.8),
+                       
                         child: TextField(
                           controller: messagecon,
                           maxLines: 5,
@@ -309,15 +291,15 @@ class _ChatScreeneState extends State<ChatScreene> {
   }
 },
                                   
-                                  icon: Icon(Iconsax.gallery),
+                                  icon:const Icon(Iconsax.gallery),
                                 ),
                                 IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Iconsax.camera),
+                                  icon:const Icon(Iconsax.camera),
                                 ),
                               ],
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding:const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 16),
                             hintText: 'message',
                             border: OutlineInputBorder(
@@ -339,7 +321,7 @@ class _ChatScreeneState extends State<ChatScreene> {
                             });
                           }
                         },
-                        icon: Icon(Icons.send))
+                        icon:const Icon(Icons.send))
                   ],
                 )
               ],

@@ -84,7 +84,7 @@ void initState() {
             : widget.chatUsersGroup.lastMessage.toString(),
         maxLines: 1,
       ),
-      //trailing: Text(widget.chatUsersGroup.lastMessageTime.toString()),
+     
 
       trailing: StreamBuilder(
                     stream: FirebaseFirestore.instance
@@ -140,7 +140,7 @@ void initState() {
                           return Text(formattedDate);
                         }
                       } else {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       }
                     }),
 

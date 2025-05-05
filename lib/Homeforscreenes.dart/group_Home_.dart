@@ -25,7 +25,7 @@ class _MyWidgetState extends State<group_home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('group'),
+        title:const Text('group'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -37,7 +37,7 @@ class _MyWidgetState extends State<group_home> {
                     builder: (BuildContext context, StateSetter setModalState) {
                   return Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(20),
+                    padding:const EdgeInsets.all(20),
                     child: SingleChildScrollView(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,11 +45,11 @@ class _MyWidgetState extends State<group_home> {
                           children: [
                             Row(
                               children: [
-                                Text(' Enter Your  Name Group'),
+                              const  Text(' Enter Your  Name Group'),
                                 Spacer(),
                                 IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Iconsax.scan4)),
+                                    icon:const Icon(Iconsax.scan4)),
                                 IconButton(
                                     onPressed: () {
                                       Navigator.pop(context);
@@ -57,16 +57,16 @@ class _MyWidgetState extends State<group_home> {
                                         groupName.text = "";
                                       });
                                     },
-                                    icon: Icon(Icons.cancel))
+                                    icon:const Icon(Icons.cancel))
                               ],
                             ),
-                            SizedBox(
+                          const  SizedBox(
                               height: 10,
                             ),
                             Row(
                               children: [
                                 Stack(children: [
-                                  CircleAvatar(
+                             const     CircleAvatar(
                                     radius: 40,
                                   ),
                                   Positioned(
@@ -74,11 +74,11 @@ class _MyWidgetState extends State<group_home> {
                                     right: -5,
                                     child: IconButton(
                                       onPressed: () {},
-                                      icon: Icon(Icons.add_a_photo),
+                                      icon:const Icon(Icons.add_a_photo),
                                     ),
                                   ),
                                 ]),
-                                SizedBox(
+                             const   SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
@@ -92,14 +92,14 @@ class _MyWidgetState extends State<group_home> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                           const SizedBox(
                               height: 25,
                             ),
                             members.isNotEmpty
                                 ? Center(
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(150, 50),
+                                        minimumSize:const Size(150, 50),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(13)),
@@ -116,27 +116,27 @@ class _MyWidgetState extends State<group_home> {
                                           Navigator.pop(context);
                                         }
                                       },
-                                      child: Text(
+                                      child:const Text(
                                         'Create',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
                                   )
                                 : Container(),
-                            SizedBox(
+                           const SizedBox(
                               height: 10,
                             ),
                             Divider(),
                             Row(
                               children: [
-                                Text("Members"),
-                                Spacer(),
+                               const Text("Members"),
+                               const Spacer(),
                               
-                                Text("${members.length}",style: TextStyle(fontSize: 20),),
+                                Text("${members.length}",style: const TextStyle(fontSize: 20),),
                     
                               ],
                             ),
-                            SizedBox(
+                          const  SizedBox(
                               height: 10,
                             ),
                             SizedBox(
@@ -154,7 +154,7 @@ class _MyWidgetState extends State<group_home> {
                                             []);
 
                                     if (myContacts.isEmpty) {
-                                      return Center(
+                                      return const Center(
                                           child: Text('No contacts found.'));
                                     }
 
@@ -180,16 +180,16 @@ class _MyWidgetState extends State<group_home> {
                                               final isSelected = members
                                                   .contains(users[index].id);
                                               return CheckboxListTile(
-                                                checkboxShape: CircleBorder(),
+                                                checkboxShape:const CircleBorder(),
                                                 value: isSelected,
                                                 onChanged: (bool? value) {
                                                   setModalState(() {
                                                     if (value == true) {
                                                       members.add(
-                                                          users[index].id!);
+                                                          users[index].id);
                                                     } else {
                                                       members.remove(
-                                                          users[index].id!);
+                                                          users[index].id);
                                                     }
                                                   });
                                                 },
@@ -198,41 +198,27 @@ class _MyWidgetState extends State<group_home> {
                                             },
                                           );
                                         } else {
-                                          return Center(
+                                          return const Center(
                                               child:
                                                   CircularProgressIndicator());
                                         }
                                       },
                                     );
                                   } else {
-                                    return Center(
+                                    return const Center(
                                         child: CircularProgressIndicator());
                                   }
                                 },
                               ),
                             ),
 
-                            /*
-                          CheckboxListTile(
-                            checkboxShape: CircleBorder(),
-                            value: true,
-                            onChanged: (value) {},
-                            title: Text('Ahmed'),
-                          ),
-                          CheckboxListTile(
-                            checkboxShape: CircleBorder(),
-                            value: false,
-                            onChanged: (value) {},
-                            title: Text('Ahmed'),
-                          ),
-                          */
                           ]),
                     ),
                   );
                 });
               });
         },
-        child: Icon(
+        child:const Icon(
           Iconsax.message_add_1,
           color: Colors.green,
         ),
@@ -261,7 +247,7 @@ class _MyWidgetState extends State<group_home> {
                         );
                       });
                 } else {
-                  return CircularProgressIndicator();
+                  return const  CircularProgressIndicator();
                 }
               },
             ),

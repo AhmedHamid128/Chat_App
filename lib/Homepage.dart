@@ -2,7 +2,7 @@ import 'package:chat_app_with_firebase/screenes/Login_screene.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Homepage());
+  runApp(const Homepage());
 }
 
 class Homepage extends StatelessWidget {

@@ -1,4 +1,4 @@
-/*
+
 import 'package:chat_app_with_firebase/models/Group-model.dart';
 import 'package:chat_app_with_firebase/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,200 +15,12 @@ class EditGroupScreen extends StatefulWidget {
 }
 
 class _EditGroupScreenState extends State<EditGroupScreen> {
-  TextEditingController gNameCon = TextEditingController();
-  final String myId = FirebaseAuth.instance.currentUser!.uid;
-  List<String> members = [];
-  
-  List<String> myContacts = [];
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    gNameCon.text = widget.chatUsersGroup.name.toString();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          label: Text("Done"),
-          icon: Icon(Iconsax.tick_circle),
-        ),
-        appBar: AppBar(
-          title: Text("Edit Group"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Text(' Enter a New  Name of Group'),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        CircleAvatar(
-                          radius: 40,
-                        ),
-                        Positioned(
-                            bottom: -10,
-                            right: -10,
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.add_a_photo)))
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: gNameCon,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height *
-                        0.4, // Takes 40% of screen
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          myContacts = List<String>.from(
-                              snapshot.data!.data()!['my_users'] ?? []);
-
-                          if (myContacts.isEmpty) {
-                            return Center(child: Text('No contacts found.'));
-                          }
-
-                          return StreamBuilder
-                              //<QuerySnapshot>
-                              (
-                            stream: FirebaseFirestore.instance
-                                .collection('users')
-                                .where(FieldPath.documentId,
-                                    whereIn: myContacts)
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                final users = snapshot.data!.docs
-                                    .map((doc) =>
-                                        UserModelContacts.fromDocument(doc))
-                                    // means Remove myname from members
-                                    .where((Element) => Element.id != myId)
-                                    .toList();
-
-                                return ListView.builder(
-                                  itemCount: users.length,
-                                  itemBuilder: (context, index) {
-                                    final isSelected =
-                                        members.contains(users[index].id);
-                                    return CheckboxListTile(
-                                      checkboxShape: CircleBorder(),
-                                      value: isSelected,
-                                      onChanged: (bool? value) {
-                                        setState(() {});
-                                        (() {
-                                          if (value == true) {
-                                            members.add(users[index].id!);
-                                          } else {
-                                            members.remove(users[index].id!);
-                                          }
-                                        });
-                                      },
-                                      title: Text(users[index].name),
-                                    );
-                                  },
-                                );
-                              } else {
-                                return Center(
-                                    child: CircularProgressIndicator());
-                              }
-                            },
-                          );
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Divider(),
-              SizedBox(
-                height: 16,
-              ),
-              Row(
-                children: [
-                  Text("Add Members"),
-                  Spacer(),
-                  Text("0"),
-                ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Expanded(
-                  child: ListView(
-                children: [
-                  CheckboxListTile(
-                    checkboxShape: CircleBorder(),
-                    title: Text(widget. users[index].name),
-                    value: true,
-                    onChanged: (value) {},
-                  ),
-                  CheckboxListTile(
-                    checkboxShape: CircleBorder(),
-                    title: Text("Nabil"),
-                    value: false,
-                    onChanged: (value) {},
-                  ),
-                ],
-              ))
-            ],
-          ),
-        ));
-  }
-}
-*/
-import 'package:chat_app_with_firebase/models/Group-model.dart';
-import 'package:chat_app_with_firebase/models/user_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-
-class EditGroupScreen extends StatefulWidget {
-  final ChatUsersGroup chatUsersGroup;
-  const EditGroupScreen({super.key, required this.chatUsersGroup});
-
-  @override
-  State<EditGroupScreen> createState() => _EditGroupScreenState();
-}
-
-class _EditGroupScreenState extends State<EditGroupScreen> {
+   //late TextEditingController _groupNameController;
   TextEditingController groupName = TextEditingController();
-  //late TextEditingController _groupNameController;
+ 
   final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
   List<String> _selectedMembers = [];
-  //List<String> _userContacts = [];
+  
   List<String> members = [];
 
   List<String> myContacts = [];
@@ -239,10 +51,10 @@ class _EditGroupScreenState extends State<EditGroupScreen> {
         'name': groupName.text.trim(),
         'members': updatedMembers,
          'last_updated': FieldValue.serverTimestamp(), // Better timestamp handling
-        //'last_updated': DateTime.now(),
+        //'last_updated': DateTime.now(), 
       });
 
-      //Navigator.pop(context);
+      
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error updating group: ${e.toString()}')));
@@ -261,8 +73,6 @@ class _EditGroupScreenState extends State<EditGroupScreen> {
               
             
           
-             //Navigator.pop(context);
-          /////_updateGroup,
           label: const Text("Save Changes"),
           icon: const Icon(Iconsax.tick_circle),
         ),
@@ -335,7 +145,7 @@ class _EditGroupScreenState extends State<EditGroupScreen> {
                                   padding: const EdgeInsets.only(right: 8.0),
                                   child: Column(
                                     children: [
-                                      CircleAvatar(
+                                    const  CircleAvatar(
                                         radius: 24,
                                       ),
                                       Text(user.name,
@@ -413,7 +223,7 @@ class _EditGroupScreenState extends State<EditGroupScreen> {
                                       });
                                     },
                                     title: Text(contact.name),
-                                    secondary: CircleAvatar(),
+                                    secondary:const CircleAvatar(),
                                   );
                                 },
                               );
@@ -431,10 +241,5 @@ class _EditGroupScreenState extends State<EditGroupScreen> {
       );
     });
   }
-/*
-  @override
-  void dispose() {
-    groupName.dispose();
-    super.dispose();
-  }*/
+
 }

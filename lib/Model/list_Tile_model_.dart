@@ -1,7 +1,6 @@
 import 'package:chat_app_with_firebase/models/Room_model.dart';
 import 'package:chat_app_with_firebase/models/message_model.dart';
 import 'package:chat_app_with_firebase/models/user_model.dart';
-import 'package:chat_app_with_firebase/widegt/ChatScreen2.dart';
 import 'package:chat_app_with_firebase/widegt/chat_screene.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,13 +13,7 @@ class model_list_tile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*
-  item.members!: قائمة أعضاء الغرفة.
-
-where(...): يفلتر القائمة لاستبعاد ID المستخدم الحالي.
-
-first: يأخذ أول عنصر في القائمة المفلترة (المستخدم الآخر
-  */
+    
     String userId = item.members!
         .where((element) => element != FirebaseAuth.instance.currentUser!.uid)
         .first;
@@ -47,12 +40,12 @@ first: يأخذ أول عنصر في القائمة المفلترة (المست
                             
                             
                             )),
-                leading: CircleAvatar(),
+                leading:const CircleAvatar(),
                 title: Text(chatuser.name ??
                     'user unknown'), // يعرض اسم المستخدم، وإذا كان الاسم غير متوفر يُعرض "user unknown".
                 subtitle: Text(
                   item.lastMessage!.isEmpty
-                      ? chatuser.about! ?? ""
+                      ? chatuser.about! ?? ''
                       : item.lastMessage!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -66,7 +59,7 @@ first: يأخذ أول عنصر في القائمة المفلترة (المست
                     builder: (context, messageSnapshot) {
                       if (messageSnapshot.connectionState ==
                           ConnectionState.waiting) {
-                        return const SizedBox(); // Or some placeholder
+                        return const SizedBox(); 
                       }
                       if (messageSnapshot.hasData) {
                         final unReadList = messageSnapshot.data?.docs
@@ -111,51 +104,13 @@ first: يأخذ أول عنصر في القائمة المفلترة (المست
                           return Text(formattedDate);
                         }
                       } else {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       }
                     }),
               ),
             );
           }
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         });
   }
 }
-
-/*
-                      final unReadlist = snapshot.data?.docs
-                          .map((e) => Message.fromJson(e.data()))
-                          .where((Element) => Element.read != " ")
-                          .where((Element) =>
-                              Element.FromId ==
-                              FirebaseAuth.instance.currentUser!.uid);
-                      return unReadlist!.length == 0 
-                          ? Badge(
-                              backgroundColor: Colors.amber[200],
-                              label: Text(unReadlist.length.toString()),
-                            )
-                          : Text(DateFormat('MMM d, h:mm a')
-                              .format(DateTime.fromMillisecondsSinceEpoch(
-                                  int.parse(item.lastMesssageTime.toString())))
-                              .toString());
-                              */
-
-/*
-                          return hasUnreadMessages
-                              ? Badge(
-                                  backgroundColor: Colors.amber[200],
-                                  label: Text(unReadList.length.toString()),
-                                )
-                              : Text(
-                                  DateFormat('MMM d, h:mm a').format(
-                                    DateTime.fromMillisecondsSinceEpoch(
-                                      int.parse(
-                                          item.lastMesssageTime.toString()),
-                                    ),
-                                  ),
-                                );
-                        } else {
-                          return CircularProgressIndicator();
-                        }
-                      })),
-                      */

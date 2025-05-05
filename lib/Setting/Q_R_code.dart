@@ -16,7 +16,7 @@ class _QRCodeState extends State<QRCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Code'),
+        title:const Text('QR Code'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -24,7 +24,7 @@ class _QRCodeState extends State<QRCode> {
             Card(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding:const EdgeInsets.all(30),
                   child: Card(
                     color: Colors.white,
                     child: QrImageView( 

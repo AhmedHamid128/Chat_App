@@ -35,14 +35,7 @@ class ProviderApp with ChangeNotifier {
       notifyListeners();
 
     }
-    /*
-    Future<void> GetUserDetiales() async{
-      String myId = FirebaseAuth.instance.currentUser!.uid;
-      // Store my data in me and apear from json
-     await FirebaseFirestore.instance.collection('users').doc(myId).get().then((value)=> me = ChatUser.fromJson(value.data()!),);
-     notifyListeners();
-    }
-    */
+   
 
 
 
@@ -53,7 +46,7 @@ class ProviderApp with ChangeNotifier {
     notifyListeners();
   }
 
-  //
+  
   
   
 }

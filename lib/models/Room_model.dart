@@ -14,8 +14,7 @@ class ChatRoom {
     required this.lastMessage,
     required this.lastMesssageTime,
     required this.createdAt,
-    //required DateTime lastMessageTime1,
-    //required String lastMessageTime
+   
   });
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) {
@@ -26,9 +25,6 @@ class ChatRoom {
       lastMesssageTime: json['last_time_message'] ?? '',
 
       createdAt: json['created_at'],
-      //lastMessageTime: '',
-      //lastMessageTime1: (json['last_Message_Time'] as Timestamp).toDate(),
-      //lastMesssageTime: '',
     );
   }
   Map<String, dynamic> toJson() {

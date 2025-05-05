@@ -16,7 +16,7 @@ class Chat_Home extends StatefulWidget {
 class _ChatHomeScreenState extends State<Chat_Home> {
   TextEditingController emailController = TextEditingController();
   @override
-  TextEditingController emailcon = TextEditingController();
+  
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -25,7 +25,7 @@ class _ChatHomeScreenState extends State<Chat_Home> {
             context: context,
             builder: (context) {
               return Container(
-                padding: EdgeInsets.all(20),
+                padding:const EdgeInsets.all(20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -35,19 +35,19 @@ class _ChatHomeScreenState extends State<Chat_Home> {
                           "Enter your friend's email",
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
-                        Spacer(),
+                      const  Spacer(),
                         IconButton.filled(
                           onPressed: () {},
-                          icon: Icon(Iconsax.scan_barcode),
+                          icon:const Icon(Iconsax.scan_barcode),
                         ),
                         IconButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.cancel))
+                            icon:const Icon(Icons.cancel))
                       ],
                     ),
-                    SizedBox(
+                  const  SizedBox(
                       height: 30,
                     ),
                     Row(children: [
@@ -55,18 +55,18 @@ class _ChatHomeScreenState extends State<Chat_Home> {
                           child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.mark_email_unread_rounded),
+                            prefixIcon:const Icon(Icons.mark_email_unread_rounded),
                             hintText: 'email your  Friend',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8))),
                       )),
                     ]),
-                    SizedBox(
+                  const  SizedBox(
                       height: 60,
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(16),
+                            padding:const EdgeInsets.all(16),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
                             backgroundColor:
@@ -83,7 +83,7 @@ class _ChatHomeScreenState extends State<Chat_Home> {
                             Navigator.pop(context);
                           }
                         },
-                        child: Center(
+                        child:const Center(
                           child: Text("Create Chat"),
                         ))
                   ],
@@ -127,7 +127,7 @@ class _ChatHomeScreenState extends State<Chat_Home> {
                           return model_list_tile(item: items[index]);
                         });
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -141,18 +141,4 @@ class _ChatHomeScreenState extends State<Chat_Home> {
   }
 }
 
-
-/*
-void createRoom1(String email) async {
-  try {
-    await FirebaseFirestore.instance.collection('rooms').add({
-      'email': email,
-      'created_at': Timestamp.now(),
-    });
-    print("Room created successfully!");
-  } catch (e) {
-    print("Failed to create room: $e");
-  }
-}
-*/
 

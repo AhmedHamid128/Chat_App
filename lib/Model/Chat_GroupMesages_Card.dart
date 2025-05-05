@@ -7,7 +7,7 @@ import 'package:iconsax/iconsax.dart';
 class ChatGroupmesagesCard extends StatefulWidget {
   final Message message;
   final int index;
-  ChatGroupmesagesCard({super.key, required this.index, required this.message});
+  const ChatGroupmesagesCard({super.key, required this.index, required this.message});
 
   @override
   State<ChatGroupmesagesCard> createState() => _ChatGroupmesagesCardState();
@@ -21,15 +21,15 @@ class _ChatGroupmesagesCardState extends State<ChatGroupmesagesCard> {
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         isMe
-            ? IconButton(onPressed: () {}, icon: Icon(Iconsax.message_edit))
-            : SizedBox(),
+            ? IconButton(onPressed: () {}, icon:const Icon(Iconsax.message_edit))
+            :const SizedBox(),
         Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(isMe ? 16 : 0),
               topRight: Radius.circular(isMe ? 0 : 16),
-              bottomLeft: Radius.circular(16),
-              bottomRight: Radius.circular(16),
+              bottomLeft:const Radius.circular(16),
+              bottomRight:const Radius.circular(16),
             ),
           ),
           color: isMe
@@ -54,7 +54,7 @@ class _ChatGroupmesagesCardState extends State<ChatGroupmesagesCard> {
                             return snapshot.hasData
                                 ? Text(
                                     snapshot.data!.data()!['name'],
-                                    style: TextStyle(
+                                    style:const TextStyle(
                                       color: Colors.white, // Light mint green
 
                                       fontSize: 15,
@@ -63,16 +63,16 @@ class _ChatGroupmesagesCardState extends State<ChatGroupmesagesCard> {
                                   )
                                 : Container();
                           })
-                      : SizedBox(),
+                      :const SizedBox(),
                   Text(widget.message.msg!),
                   Row(
                     children: [
-                      Spacer(),
+                    const  Spacer(),
                       Text(
                         widget.message.createdAt!,
-                        style: TextStyle(fontSize: 11),
+                        style:const TextStyle(fontSize: 11),
                       ),
-                      SizedBox(
+                    const  SizedBox(
                         width: 6,
                       ),
                       isMe
@@ -83,7 +83,7 @@ class _ChatGroupmesagesCardState extends State<ChatGroupmesagesCard> {
                                   : Colors.blueAccent,
                               size: 18,
                             )
-                          : SizedBox(
+                          :const SizedBox(
                               width: 1,
                             ),
                     ],

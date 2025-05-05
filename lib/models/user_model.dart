@@ -16,7 +16,7 @@ class ChatUser {
 
   String? createdAt; 
   List? myUsers;
-  //List<String>? myUsers;
+ 
    
 
   ChatUser({
@@ -30,7 +30,6 @@ class ChatUser {
     required this.online,
     required this.puchTokn,
     required this.myUsers,
-     //required String lastActivated,
     
   });
 
@@ -78,8 +77,7 @@ class ChatUser {
   }) => ChatUser(
     image: image ?? this.image, id: '', createdAt: '', about: '', email: '', name: '', lastActivted: '', online: '', puchTokn: '', myUsers: [], 
   
-    //lastActivated: '',
-    // ... other fields ...
+    
   );
 
 }

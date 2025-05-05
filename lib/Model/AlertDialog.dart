@@ -14,11 +14,11 @@ Future<bool> showConfirmationDialog(
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(false),
-                child: Text('No'),
+                child:const Text('No'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(true),
-                child: Text('Yes'),
+                child:const Text('Yes'),
               ),
             ],
           );
@@ -35,16 +35,16 @@ Future<bool> showAdminAlert(BuildContext context, String memberName) async {
         barrierDismissible: true,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            title: Text('Promote to Admin'),
+            title:const Text('Promote to Admin'),
             content: Text(' $memberName   ر هل تريد تعيين مشرفا في المجموعه'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(false),
-                child: Text('No'),
+                child:const Text('No'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(true),
-                child: Text('Yes'),
+                child:const Text('Yes'),
               ),
             ],
           );
@@ -53,48 +53,23 @@ Future<bool> showAdminAlert(BuildContext context, String memberName) async {
       false;
 }
 
-/*
-Future<bool> _showConfirmationDialog(
-    BuildContext context, String memberName) async {
-  return await showDialog<bool>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            title: Text('Confirm Deletion'),
-            content: Text('Do you want to remove $memberName from the group?'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(ctx).pop(false),
-                child: Text('No'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(ctx).pop(true),
-                child: Text('Yes'),
-              ),
-            ],
-          );
-        },
-      ) ??
-      false;
-}
-*/
+
 Future<bool> ShowEditDialog(BuildContext context, String groupName) async {
   return await showDialog<bool>(
         context: context,
         barrierDismissible: true,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            title: Text('تعديل المجموعة'),
+            title:const Text('تعديل المجموعة'),
             content: Text('  هل تريد تغيير اسم   $groupName  واضافه اعضاء جدد'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(false),
-                child: Text('No'),
+                child:const Text('No'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(true),
-                child: Text('Yes'),
+                child:const Text('Yes'),
               ),
             ],
           );

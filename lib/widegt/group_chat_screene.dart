@@ -42,36 +42,7 @@ class _ChatScreeneState extends State<GroupChatScreene> {
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setModalState) {
       return Scaffold(
-        appBar: /*
-        AppBar(
-          title: Padding(
-            padding: EdgeInsets.only(top: 8),
-            child: Column(
-              children: [
-                Text(widget.chatUserGroup.name.toString()),
-                // to apear name of group in apove
-                StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection('users')
-                      .where('id', whereIn: widget.chatUserGroup.members)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List<String> membersName = [];
-                      for (var element in snapshot.data!.docs) {
-                        membersName.add(element.data()['name']);
-                      }
-                      return Text(
-                        membersName.join(', '),
-                        style: TextStyle(fontSize: 12),
-                      );
-                    }
-                    return Container();
-                  },
-                )
-              ],
-            ),
-          ),*/
+        appBar: 
             AppBar(
           title: StreamBuilder<DocumentSnapshot>(
             stream: _groupStream,
@@ -124,13 +95,12 @@ class _ChatScreeneState extends State<GroupChatScreene> {
                         // devalut
                         currentUserId: widget.chatuser.id.toString(),
                         chatUsersGroup: widget.chatUserGroup,
-                        //memberIds: widget.chatUserGroup.members!.cast<String>(),
-                        //groupId: widget.chatUserGroup.id!,
+                        
                       ),
                     ),
                   );
                 },
-                icon: Icon(Iconsax.user)),
+                icon:const Icon(Iconsax.user)),
           ],
         ),
         body: Padding(
@@ -172,7 +142,7 @@ class _ChatScreeneState extends State<GroupChatScreene> {
                                             .textTheme
                                             .displayMedium,
                                       ),
-                                      SizedBox(
+                                   const   SizedBox(
                                         height: 16,
                                       ),
                                       Text(
@@ -199,7 +169,7 @@ class _ChatScreeneState extends State<GroupChatScreene> {
                               });
                         }
                       } else {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       }
                     }),
               ),
@@ -218,16 +188,16 @@ class _ChatScreeneState extends State<GroupChatScreene> {
                             children: [
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Iconsax.gallery),
+                                icon:const Icon(Iconsax.gallery),
                               ),
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Iconsax.camera),
+                                icon:const Icon(Iconsax.camera),
                               ),
                             ],
                           ),
                           contentPadding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                            const  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                           hintText: 'message',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8)),
@@ -244,7 +214,7 @@ class _ChatScreeneState extends State<GroupChatScreene> {
                           messageGroupController.text = "";
                         }
                       },
-                      icon: Icon(Icons.send))
+                      icon:const Icon(Icons.send))
                 ],
               )
             ],

@@ -3,6 +3,7 @@ import 'package:chat_app_with_firebase/forget_passprd_.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class LoginScreene extends StatefulWidget {
   LoginScreene({super.key, this.ispass = true});
   bool ispass;
@@ -29,12 +30,7 @@ class _MyWidgetState extends State<LoginScreene> {
             key: formKey,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              /* SvgPicture.network(
-                  'assets/Screenshot 2024-08-11 012455.png',
-                  width: 100,
-                  colorFilter:
-                      ColorFilter.mode(Colors.blueAccent, BlendMode.src),
-                ),*/
+              
 
               Image.network(
                 //' assets/Screenshot 2024-08-11 012455.png ',
@@ -62,17 +58,17 @@ class _MyWidgetState extends State<LoginScreene> {
                         showtext1 ? Icons.visibility : Icons.visibility_off),
                   ),
                   // SizedBox(),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder:const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(255, 136, 196, 245)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon:const Icon(Icons.email),
                   hintText: 'enter email',
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -92,15 +88,15 @@ class _MyWidgetState extends State<LoginScreene> {
                               ? Icons.visibility
                               : Icons.visibility_off),
                         )
-                      : SizedBox(),
-                  focusedBorder: OutlineInputBorder(
+                      :const SizedBox(),
+                  focusedBorder:const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(255, 136, 196, 245)),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
                   prefixIcon:
-                      Icon(size: 29, Icons.lock_person, color: Colors.white),
+                   const   Icon(size: 29, Icons.lock_person, color: Colors.white),
                   hintText: 'password',
                 ),
               ),
@@ -115,11 +111,11 @@ class _MyWidgetState extends State<LoginScreene> {
                             builder: (context) => fotgetpassord()),
                       );
                     },
-                    child: Text(' forget password?'),
+                    child:const Text(' forget password?'),
                   ),
                 ],
               ),
-              SizedBox(
+        const SizedBox(
                 height: 30,
               ),
               Container(
@@ -146,12 +142,12 @@ class _MyWidgetState extends State<LoginScreene> {
                               SnackBar(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12)),
-                                duration: Duration(seconds: 2),
+                                duration:const Duration(seconds: 2),
                                 backgroundColor:
                                     Color.fromARGB(255, 22, 97, 51),
                                 content: Text(
                                   error.toString(),
-                                  style: TextStyle(color: Colors.white),
+                                  style:const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ),
@@ -159,16 +155,16 @@ class _MyWidgetState extends State<LoginScreene> {
                     }
                     ;
                   },
-                  child: Text(
+                  child:const Text(
                     " Login",
                     style: TextStyle(color: Color.fromARGB(236, 0, 0, 0)),
                   ),
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 30,
               ),
-              Container(
+             Container(
                 height: 40,
                 width: double.infinity,
                 child: OutlinedButton(
@@ -176,16 +172,12 @@ class _MyWidgetState extends State<LoginScreene> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12))),
                   onPressed: () {
-                    /* Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => setup_profil()),
-                        (Route) => false);
-                        */
+                    
                     FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
                             email: emailcon.text, password: paswcon.text)
                         .then((Value) => FireAuth.creatuser()
-                            //print('done')
+                           
                             )
                         .onError(
                           (error, StackTrace) =>
@@ -193,12 +185,12 @@ class _MyWidgetState extends State<LoginScreene> {
                             SnackBar(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              duration: Duration(seconds: 2),
+                              duration:const Duration(seconds: 2),
                               backgroundColor: Color.fromARGB(255, 22, 97, 51),
                               content: Center(
                                 child: Text(
                                   error.toString(),
-                                  style: TextStyle(color: Colors.white),
+                                  style:const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ),

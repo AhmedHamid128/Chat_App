@@ -4,8 +4,6 @@ import 'package:chat_app_with_firebase/Homeforscreenes.dart/group_Home_.dart';
 import 'package:chat_app_with_firebase/Homeforscreenes.dart/setting_Home_.dart';
 import 'package:chat_app_with_firebase/Provider/provider.dart';
 import 'package:chat_app_with_firebase/firebase/firebase_auth_.dart';
-import 'package:chat_app_with_firebase/models/message_model.dart';
-import 'package:chat_app_with_firebase/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,8 +20,7 @@ class FirstPage extends StatefulWidget {
 
 class _MyWidgetState extends State<FirstPage> {
   
- // @override
-  
+ 
   int currentindex = 0;
 
 
@@ -33,28 +30,9 @@ class _MyWidgetState extends State<FirstPage> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
     Provider.of<ProviderApp>(context, listen: false).GetUserDetails();
   });
-  /*
-     SystemChannels.lifecycle.setMessageHandler((message) {
-      if(message.toString()== ' resumed'){
-      FireAuth.updateLastSeen(true);
-
-      }
-      else if(message.toString() == 'passude'){
-        FireAuth.updateLastSeen(false);
-
-      }
-       
-       print(message);
-       return Future.value(message);
-     
-
-     });
-      super.initState();
-    }  
-    */
-
+  
    SystemChannels.lifecycle.setMessageHandler((message) async {
-      print("Lifecycle state: $message");
+      //print("Lifecycle state: $message");
       if (message == AppLifecycleState.resumed.toString()) {
         await FireAuth.updateLastSeen(true);
       } else if (message == AppLifecycleState.paused.toString()) {
@@ -80,7 +58,7 @@ class _MyWidgetState extends State<FirstPage> {
     List<Widget> screenes = [
       Chat_Home(),
       group_home(),
-      //contacts_home(),
+      
       ContactsHome(),
 
  
@@ -88,7 +66,7 @@ class _MyWidgetState extends State<FirstPage> {
     ];
   
   
-    //ChatUser? me = Provider.of<ProviderApp>(context).me;
+    
     
 
     return Scaffold(  
@@ -102,14 +80,14 @@ class _MyWidgetState extends State<FirstPage> {
         },
         selectedIndex: currentindex,
         destinations: [
-          NavigationDestination(
+         NavigationDestination(
               icon: Icon(Icons.messenger_outline_outlined), label: 'chat'),
-          NavigationDestination(
+         NavigationDestination(
             icon: Icon(Icons.group_add_rounded),
             label: 'group',
           ),
           NavigationDestination(icon: Icon(Iconsax.user), label: 'contacts'),
-          NavigationDestination(icon: Icon(Iconsax.setting_2), label: 'settin'),
+    NavigationDestination(icon: Icon(Iconsax.setting_2), label: 'settin'),
         ],
       ),
       body:   screenes[currentindex],

@@ -1,15 +1,15 @@
 import 'package:chat_app_with_firebase/Provider/provider.dart';
 import 'package:chat_app_with_firebase/Setting/Q_R_code.dart';
 import 'package:chat_app_with_firebase/Setting/profile.dart';
-import 'package:chat_app_with_firebase/models/user_model.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+
 
 
 class setting_home extends StatefulWidget {
@@ -29,7 +29,7 @@ class _settin_homeState extends State<setting_home> {
       floatingActionButton: FloatingActionButton (onPressed: (){
         FirebaseMessaging.instance.requestPermission();
         FirebaseMessaging.instance.getToken().then((value){
-          print(value);
+       
 
         });
 
@@ -37,16 +37,16 @@ class _settin_homeState extends State<setting_home> {
 
 
       appBar: AppBar(
-        title: Text('setting'),
+        title:const Text('setting'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
               ListTile(
                 minVerticalPadding: 40,
-                leading: CircleAvatar(
+                leading:const CircleAvatar(
                   radius: 60,  
                 ),
                 title:  Text(provider.me?.name ??  'jjj' ),
@@ -59,21 +59,21 @@ class _settin_homeState extends State<setting_home> {
                       ),
                     );
                   },
-                  icon: Icon(Iconsax.scan),
+                  icon:const Icon(Iconsax.scan),
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 10,
               ),
               Card(
                 child: ListTile(
-                  leading: Icon(Iconsax.user),
+                  leading:const Icon(Iconsax.user),
                   title: Text('Profile'),
                   trailing: Icon(Iconsax.arrow_right),
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Profile
+                          builder: (context) => const Profile
                               //Profile
 
                               ())),
@@ -89,12 +89,10 @@ class _settin_homeState extends State<setting_home> {
                             content: SingleChildScrollView(
                               child: BlockPicker(
                                   pickerColor: 
-                                  //Color(provider.mainColor),
+                                  
                                   Colors.red,
                                   onColorChanged: (Value) {
-                                    //print(value.value.toRadixString(16));
-
-                                    // appear me value of (0xff) as Color 
+                                    
                                     provider.ChanageColor(Value.value);
 
                                   },),
@@ -127,9 +125,9 @@ class _settin_homeState extends State<setting_home> {
               Card(
                 child: ListTile(
                   onTap: () async => await FirebaseAuth.instance.signOut(),
-                  leading: Icon(Iconsax.user),
-                  title: Text('Signout'),
-                  trailing: Icon(Icons.logout),
+                  leading:const Icon(Iconsax.user),
+                  title: const Text('Signout'),
+                  trailing:const Icon(Icons.logout),
                 ),
               ),
             ],
